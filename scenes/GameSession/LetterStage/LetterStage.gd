@@ -3,6 +3,7 @@ extends Node2D
 
 const BUTTON_SIZE = 128
 const MAX_LETTER_COUNT = 10 # The highest amt of letters allowed on the screen.
+const GAP = 8
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,10 +18,9 @@ func _on_tiles_changed(tiles: Array[Tile]):
 
 	for tile in Store.selected_tiles:
 		var sprite = tile.get_sprite()
-		var stage_width = viewport_size.x - BUTTON_SIZE*2 - tile.square_size
-		var available_width = stage_width / len(Store.selected_tiles)
 		var index = Store.selected_tiles.find(tile)
-		var x = (BUTTON_SIZE + tile.square_size/2) + (index * available_width) + (available_width/2)
+		var letter_width = (len(Store.selected_tiles) -1) * (tile.square_size - GAP)
+		var x = viewport_size.x/2 - letter_width/2 + index * (tile.square_size+GAP)
 		var y = viewport_size.y - BUTTON_SIZE/2
 		sprite.set_position(Vector2(x, y))
 		add_child(sprite)
