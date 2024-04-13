@@ -1,9 +1,10 @@
+class_name DetectWord
 extends Node
 
 var words = []
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _init():
 	load_words()
 
 func is_word_recognised(target_word: String):

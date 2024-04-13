@@ -1,6 +1,8 @@
 class_name Tile
 extends Node
 
+const square_size = 50.0
+
 var letter: String
 var isSelected: bool = false
 
@@ -27,8 +29,10 @@ func _init():
 			letter = letter_char
 			break
 
-func select():
-	isSelected = true
-	
-func deselect():
-	isSelected = false
+func get_sprite():
+	var sprite
+	sprite = Sprite2D.new()
+	sprite.texture = load("res://assets/sprites/alpha_tiles/letter_" + letter + ".png")
+	var sprite_scale = Vector2(square_size / sprite.texture.get_width(), square_size / sprite.texture.get_height())
+	sprite.set_scale(sprite_scale)
+	return sprite

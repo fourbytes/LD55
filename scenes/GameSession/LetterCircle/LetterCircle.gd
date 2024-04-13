@@ -1,7 +1,6 @@
 extends Node2D
 
 # Move letters and selected letters to store.gd
-const square_size = 100.0
 const spacing = 150.0
 
 const timer_duration = 2  # Duration in seconds
@@ -12,6 +11,7 @@ const tween_duration = 0.5
 
 const LETTER_CHILDREN_OFFSET = 1 # The first child is always the at this stage.
 
+const MAX_LETTER_COUNT = 10 # The highest amt of letters allowed on the screen.
 
 func _ready():
 	get_tree().root.size_changed.connect(_on_viewport_size_changed)
@@ -45,11 +45,7 @@ func update_letters():
 		var x = cos(angle) * radius
 		var y = sin(angle) * radius
 		
-		var sprite
-		sprite = Sprite2D.new()
-		sprite.texture = load("res://assets/sprites/alpha_tiles/letter_" + Store.tiles[i].letter + ".png")
-		var sprite_scale = Vector2(square_size / sprite.texture.get_width(), square_size / sprite.texture.get_height())
-		sprite.set_scale(sprite_scale)
+		var sprite = Store.tiles[i].get_sprite()
 		sprite.set_position(screen_center + Vector2(x, y))
 		
 		if Store.tiles[i].isSelected:
@@ -95,5 +91,8 @@ func _process(delta):
 				if tile.isSelected:
 					Store.deselect_tile(tile)
 				else:
-					Store.select_tile(tile)
+					if len(Store.get_selected_tiles()) < MAX_LETTER_COUNT:
+						Store.select_tile(tile)
+					else:
+						print("Can't select any more letters")
 				update_letters()
