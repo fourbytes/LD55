@@ -8,9 +8,6 @@ var detectWord = DetectWord.new()
 signal score_changed(new_score)
 signal tiles_changed(new_tiles)
 
-func get_selected_tiles():
-	return selected_tiles.duplicate()
-
 func increment_score(amount = 1):
 	score += amount
 	score_changed.emit(score)
