@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkjspblca3vrj"]
+[gd_scene load_steps=7 format=3 uid="uid://dkjspblca3vrj"]
 
 [ext_resource type="PackedScene" uid="uid://dsethylnjstt1" path="res://scenes/GameSession/GameCanvas.tscn" id="1_pmecp"]
 [ext_resource type="Script" path="res://store.gd" id="2_xpaxr"]
 [ext_resource type="PackedScene" uid="uid://d2bytwpjq4yl8" path="res://scenes/GameSession/Scoreboard/Scoreboard.tscn" id="4_ftetj"]
+[ext_resource type="PackedScene" uid="uid://cak0pwsoljhgd" path="res://scenes/GameSession/LetterStage/LetterStage.tscn" id="5_cdi50"]
 [ext_resource type="PackedScene" uid="uid://dqru7ir5r7i20" path="res://scenes/GameSession/IncrementScoreButton/IncremenetScoreButton.tscn" id="5_nk176"]
 [ext_resource type="PackedScene" uid="uid://df4faon2dlwjv" path="res://scenes/GameSession/LetterCircle/LetterCircle.tscn" id="5_p0uam"]
 
@@ -17,6 +18,8 @@
 [node name="IncremenetScoreButton" parent="GameCanvas" instance=ExtResource("5_nk176")]
 offset_right = 8.0
 offset_bottom = 8.0
+
+[node name="LetterStage" parent="GameCanvas" instance=ExtResource("5_cdi50")]
 
 [node name="Store" type="Node" parent="."]
 script = ExtResource("2_xpaxr")

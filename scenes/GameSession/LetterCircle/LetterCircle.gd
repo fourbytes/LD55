@@ -61,7 +61,6 @@ func update_letters():
 		add_child(sprite)
 
 func _on_timer_timeout():
-	var store = get_node('../../../store')
 	# Generate a random letter
 	var random_letter = char(randi() % 26 + 65)  # Random uppercase letter (ASCII code)
 	
@@ -95,9 +94,9 @@ func _process(delta):
 		
 		if sprite.get_rect().has_point(sprite.get_local_mouse_position()):
 			if Input.is_action_just_pressed("select_letter"):
-				var letter = Store.tiles[i]
-				if letter.isSelected:
-					letter.isSelected = false
+				var tile = Store.tiles[i]
+				if tile.isSelected:
+					Store.deselect_tile(tile)
 				else:
-					letter.isSelected = true
+					Store.select_tile(tile)
 				update_letters()
