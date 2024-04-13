@@ -5,5 +5,4 @@ func _ready():
 	self.pressed.connect(_on_press)
 
 func _on_press():
-	var store = get_node('../../Store')
-	store.increment_score()
+	Store.increment_score()
