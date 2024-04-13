@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkjspblca3vrj"]
+
+[ext_resource type="Script" path="res://LetterCircle.gd" id="1_dlm2v"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_dlm2v")
