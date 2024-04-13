@@ -1,6 +1,8 @@
 extends Node2D
 
+# Move letters and selected letters to store.gd
 var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+var selected_letters = {}
 
 var square_size = 96.0
 var spacing = 160.0
@@ -11,13 +13,12 @@ var rotation_speed = 0.15  # Rotation speed in radians per second
 var elapsed_time = 0.0
 var tween_duration = 0.5
 
-var selected_letters = {}
-
 const LETTER_CHILDREN_OFFSET = 1 # The first child is always the at this stage.
 
 func _ready():
 	get_tree().root.size_changed.connect(_on_viewport_size_changed)
 	
+	# TODO: Move timer into it's own scene.
 	# Start the timer
 	var timer = Timer.new()
 	timer.connect("timeout", _on_timer_timeout)
@@ -96,5 +97,4 @@ func _process(delta):
 					selected_letters.erase(i)
 				else:
 					selected_letters[i] = true
-				print("UPDATE!")
 				update_letters()
