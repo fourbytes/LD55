@@ -6,6 +6,7 @@ var tiles: Array[Tile] = []
 signal score_changed(new_score)
 signal tiles_changed(new_tiles)
 
+
 func increment_score():
 	score += 1
 	score_changed.emit(score)
