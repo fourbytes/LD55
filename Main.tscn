@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://LetterCircle.gd" id="1_dlm2v"]
 
-[node name="Node2D" type="Node2D"]
+[node name="LetterCircleNode" type="Node2D"]
 script = ExtResource("1_dlm2v")

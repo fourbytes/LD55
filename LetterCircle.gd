@@ -2,11 +2,10 @@ extends Node2D
 
 var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
-var radius = 300
+var square_size = 96.0
+var spacing = 96.0
 
-var square_size = 256
-
-var timer_duration = 10.0  # Duration in seconds
+var timer_duration = 1.0  # Duration in seconds
 
 func _ready():
 	get_tree().root.size_changed.connect(_on_viewport_size_changed)
@@ -27,6 +26,7 @@ func update_letters():
 	var num_letters = len(letters)
 	var angle_step = 2 * PI / num_letters
 	var screen_center = get_viewport_rect().get_center()
+	var radius = (num_letters * spacing) / (2 * PI)
 	
 	for child in get_children():
 		if child is Sprite2D:
@@ -41,7 +41,9 @@ func update_letters():
 		sprite.texture = load("res://assets/alpha_tiles/letter_" + letters[i] + ".png")
 		
 		var sprite_scale = Vector2(square_size / sprite.texture.get_width(), square_size / sprite.texture.get_height())
+		print(sprite_scale)
 		sprite.set_scale(sprite_scale)
+		sprite.scale
 		
 		var sprite_size = sprite.texture.get_size() * sprite_scale
 		sprite.set_position(screen_center + Vector2(x, y))
