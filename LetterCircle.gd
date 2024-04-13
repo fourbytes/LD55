@@ -1,8 +1,8 @@
 extends Node2D
 
 var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
-var radius = 150
-var square_size = 40
+var radius = 200
+var square_size = 80
 
 func _ready():
 	var num_letters = len(letters)
@@ -19,16 +19,7 @@ func _ready():
 		square.set_size(Vector2(square_size, square_size))
 		square.set_position(screen_center + Vector2(x - square_size / 2, y - square_size / 2))
 		
-		var label = Label.new()
-		label.text = letters[i]
-		# label.align = Label.ALIGN_CENTER
-		# label.valign = Label.VALIGN_CENTER
-		label.set_size(Vector2(square_size, square_size))
-		label.set_position(screen_center + Vector2(x - square_size / 2, y - square_size / 2))
-		
 		add_child(square)
-		add_child(label)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
