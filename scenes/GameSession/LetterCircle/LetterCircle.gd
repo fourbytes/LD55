@@ -1,7 +1,7 @@
 extends Node2D
 
 # Move letters and selected letters to store.gd
-const spacing = 150.0
+const spacing = 128.0
 
 const timer_duration = 2  # Duration in seconds
 const rotation_speed = 0.25  # Rotation speed in radians per second
@@ -14,6 +14,7 @@ const LETTER_CHILDREN_OFFSET = 1 # The first child is always the at this stage.
 func _ready():
 	get_tree().root.size_changed.connect(_on_viewport_size_changed)
 	Store.tiles_changed.connect(_on_tiles_changed)
+	Store.score_changed.connect(_on_tiles_changed)
 	
 	# TODO: Move timer into it's own scene.
 	# Start the timer
@@ -26,8 +27,10 @@ func _ready():
 	
 	update_letters()
 	
+func _on_score_change(_new_score):
+	elapsed_time = 0.0
+
 func _on_tiles_changed(_new_tiles):
-	print('tiles changed')
 	update_letters()
 
 func _on_viewport_size_changed():

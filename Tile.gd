@@ -50,8 +50,17 @@ func _init():
 			letter = letter_char
 			break
 
+func calculate_multiplier(length: float) -> float:
+	var shift: float = 9.0  # This shifts the curve to the right
+	var steepness: float = 0.4  # Controls the steepness of the curve
+	var max_increase: float = 15.0  # Maximum increase over the base value of 1
+	var exponent = -steepness * (length - shift)
+	var denominator = 1.0 + exp(exponent)
+	var multiplier = 1.0 + max_increase / denominator
+	return multiplier
+
 func get_score_points():
-	return letter_score_points[letter]
+	return letter_score_points[letter] * calculate_multiplier(len(Store.selected_tiles))
 
 func get_sprite():
 	var sprite
