@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkjspblca3vrj"]
+[gd_scene load_steps=5 format=3 uid="uid://be2w48r32nf07"]
 
 [ext_resource type="Script" path="res://LetterCircle.gd" id="1_dlm2v"]
+[ext_resource type="Script" path="res://store.gd" id="2_xpaxr"]
+[ext_resource type="PackedScene" uid="uid://67bm50bjl32y" path="res://scoreboard/scoreboard.tscn" id="3_fayng"]
+[ext_resource type="Script" path="res://Button.gd" id="4_wcpmv"]
 
-[node name="LetterCircleNode" type="Node2D"]
+[node name="Node2D" type="Node2D"]
 script = ExtResource("1_dlm2v")
+
+[node name="Store" type="Node" parent="."]
+script = ExtResource("2_xpaxr")
+
+[node name="Control" parent="." instance=ExtResource("3_fayng")]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 176.0
+offset_top = 8.0
+offset_right = 311.0
+offset_bottom = 39.0
+text = "Increment Score"
+script = ExtResource("4_wcpmv")
