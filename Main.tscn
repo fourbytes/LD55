@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Button.gd" id="4_wcpmv"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_dlm2v")
 
 [node name="Store" type="Node" parent="."]
 script = ExtResource("2_xpaxr")
@@ -20,3 +19,6 @@ offset_right = 311.0
 offset_bottom = 39.0
 text = "Increment Score"
 script = ExtResource("4_wcpmv")
+
+[node name="LetterCircle" type="Node2D" parent="."]
+script = ExtResource("1_dlm2v")
