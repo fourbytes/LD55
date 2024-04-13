@@ -5,6 +5,7 @@ const square_size = 64.0
 
 var letter: String
 var isSelected: bool = false
+var isHovered: bool = false
 
 var letter_weights = {
 	'E': 12.02, 'T': 9.10, 'A': 8.12, 'O': 7.68, 'I': 7.31,

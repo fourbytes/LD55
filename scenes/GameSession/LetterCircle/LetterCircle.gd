@@ -58,6 +58,8 @@ func update_letters():
 			var border = Sprite2D.new()
 			border.texture = load("res://assets/sprites/alpha_tiles/letter_" + Store.tiles[i].letter + ".png")
 			border.self_modulate = Color(1, 0, 0, 1)  # Red color
+			border.set_meta('effect_type', 'selected')
+			border.z_index = 5
 			sprite.add_child(border)
 		
 		add_child(sprite)
@@ -91,6 +93,11 @@ func _process(delta):
 		sprite.set_position(screen_center + Vector2(x, y))
 		
 		if sprite.get_rect().has_point(sprite.get_local_mouse_position()):
+			var border = Sprite2D.new()
+			border.texture = load("res://assets/sprites/alpha_tiles/letter_" + Store.tiles[i].letter + ".png")
+			border.self_modulate = Color(0, 1, 0, 1)  # Green color
+			border.set_meta('effect_type', 'hover')
+			sprite.add_child(border)
 			if Input.is_action_just_pressed("select_letter"):
 				var tile = Store.tiles[i]
 				if tile.isSelected:
@@ -101,3 +108,7 @@ func _process(delta):
 					else:
 						print("Can't select any more letters")
 				update_letters()
+		else:
+			for child_node in sprite.get_children():
+				if child_node.get_meta('effect_type') == 'hover':
+					sprite.remove_child(child_node)
