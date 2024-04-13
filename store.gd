@@ -23,7 +23,6 @@ func delete_tiles(tilesToDelete: Array[Tile]):
 	for tile in tilesToDelete:
 		tiles.erase(tile)
 		deselect_tile(tile)
-	tiles_changed.emit(tiles)
 
 func select_tile(tile: Tile):
 	tile.isSelected = true

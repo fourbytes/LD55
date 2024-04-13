@@ -15,6 +15,7 @@ const MAX_LETTER_COUNT = 10 # The highest amt of letters allowed on the screen.
 
 func _ready():
 	get_tree().root.size_changed.connect(_on_viewport_size_changed)
+	Store.tiles_changed.connect(_on_tiles_changed)
 	
 	# TODO: Move timer into it's own scene.
 	# Start the timer
@@ -26,11 +27,14 @@ func _ready():
 	timer.start()
 	
 	update_letters()
+	
+func _on_tiles_changed(new_tiles):
+	update_letters()
 
 func _on_viewport_size_changed():
 	update_letters()
-
 func update_letters():
+	print('update letters')
 	var num_letters = len(Store.tiles)
 	var angle_step = 2 * PI / num_letters
 	var screen_center = get_viewport_rect().get_center()
@@ -76,7 +80,6 @@ func _process(delta):
 	var radius = (num_letters * spacing) / (2 * PI)
 	if radius > min(viewport.size.x, viewport.size.y) / 2:
 		Store.tiles = []
-		
 	
 	for i in range(num_letters):
 		var sprite = get_child(i + LETTER_CHILDREN_OFFSET)
