@@ -1,23 +1,24 @@
 extends Node2D
 
-
+# Move letters and selected letters to store.gd
+var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+var selected_letters = {}
 
 var square_size = 96.0
 var spacing = 160.0
 
-var timer_duration = 3.0  # Duration in seconds
-var rotation_speed = 0.15  # Rotation speed in radians per second
+var timer_duration = 0.05  # Duration in seconds
+var rotation_speed = 0.25  # Rotation speed in radians per second
 
 var elapsed_time = 0.0
 var tween_duration = 0.5
-
-var selected_letters = {}
 
 const LETTER_CHILDREN_OFFSET = 1 # The first child is always the at this stage.
 
 func _ready():
 	get_tree().root.size_changed.connect(_on_viewport_size_changed)
 	
+	# TODO: Move timer into it's own scene.
 	# Start the timer
 	var timer = Timer.new()
 	timer.connect("timeout", _on_timer_timeout)
@@ -48,14 +49,14 @@ func update_letters():
 		
 		var sprite
 		sprite = Sprite2D.new()
-		sprite.texture = load("res://assets/alpha_tiles/letter_" + letters[i] + ".png")
+		sprite.texture = load("res://assets/sprites/alpha_tiles/letter_" + letters[i] + ".png")
 		var sprite_scale = Vector2(square_size / sprite.texture.get_width(), square_size / sprite.texture.get_height())
 		sprite.set_scale(sprite_scale)
 		sprite.set_position(screen_center + Vector2(x, y))
 		
 		if selected_letters.has(i):
 			var border = Sprite2D.new()
-			border.texture = load("res://assets/alpha_tiles/letter_" + letters[i] + ".png")
+			border.texture = load("res://assets/sprites/alpha_tiles/letter_" + letters[i] + ".png")
 			border.self_modulate = Color(1, 0, 0, 1)  # Red color
 			sprite.add_child(border)
 		
@@ -79,8 +80,12 @@ func _process(delta):
 	
 	var num_letters = len(letters)
 	var angle_step = 2 * PI / num_letters
-	var screen_center = get_viewport_rect().get_center()
+	var viewport = get_viewport_rect()
+	var screen_center = viewport.get_center()
 	var radius = (num_letters * spacing) / (2 * PI)
+	if radius > min(viewport.size.x, viewport.size.y) / 2:
+		letters = []
+		
 	
 	for i in range(num_letters):
 		var sprite = get_child(i + LETTER_CHILDREN_OFFSET)
@@ -96,5 +101,4 @@ func _process(delta):
 					selected_letters.erase(i)
 				else:
 					selected_letters[i] = true
-				print("UPDATE!")
 				update_letters()

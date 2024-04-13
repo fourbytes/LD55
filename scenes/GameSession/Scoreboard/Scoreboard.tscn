@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://67bm50bjl32y"]
+[gd_scene load_steps=2 format=3 uid="uid://d2bytwpjq4yl8"]
 
-[ext_resource type="Script" path="res://scenes/GameCanvas/Scoreboard/Scoreboard.gd" id="1_1utvu"]
+[ext_resource type="Script" path="res://scenes/GameSession/Scoreboard/Scoreboard.gd" id="1_1utvu"]
 
 [node name="Scoreboard" type="Control"]
 layout_mode = 3
