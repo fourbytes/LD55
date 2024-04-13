@@ -1,8 +1,8 @@
 extends Node2D
 
 # Move letters and selected letters to store.gd
-const square_size = 96.0
-const spacing = 160.0
+const square_size = 100.0
+const spacing = 150.0
 
 const timer_duration = 2  # Duration in seconds
 const rotation_speed = 0.25  # Rotation speed in radians per second
@@ -61,9 +61,6 @@ func update_letters():
 		add_child(sprite)
 
 func _on_timer_timeout():
-	# Generate a random letter
-	var random_letter = char(randi() % 26 + 65)  # Random uppercase letter (ASCII code)
-	
 	# Generate a random index to insert the letter
 	var random_index = randi() % (len(Store.tiles) + 1)
 	
