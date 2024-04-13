@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://be2w48r32nf07"]
+[gd_scene load_steps=5 format=3 uid="uid://dkjspblca3vrj"]
 
 [ext_resource type="Script" path="res://LetterCircle.gd" id="1_dlm2v"]
 [ext_resource type="Script" path="res://store.gd" id="2_xpaxr"]

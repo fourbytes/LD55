@@ -42,7 +42,7 @@ func update_letters():
 			child.queue_free()
 	
 	for i in range(num_letters):
-		var angle = i * angle_step
+		var angle = i * angle_step + elapsed_time * rotation_speed
 		var x = cos(angle) * radius
 		var y = sin(angle) * radius
 		
@@ -51,8 +51,9 @@ func update_letters():
 		sprite.texture = load("res://assets/alpha_tiles/letter_" + letters[i] + ".png")
 		var sprite_scale = Vector2(square_size / sprite.texture.get_width(), square_size / sprite.texture.get_height())
 		sprite.set_scale(sprite_scale)
+		sprite.set_position(screen_center + Vector2(x, y))
 		
-		if selected_letters.has(letters[i]):
+		if selected_letters.has(i):
 			var border = Sprite2D.new()
 			border.texture = load("res://assets/alpha_tiles/letter_" + letters[i] + ".png")
 			border.self_modulate = Color(1, 0, 0, 1)  # Red color
@@ -89,10 +90,11 @@ func _process(delta):
 		sprite.set_position(screen_center + Vector2(x, y))
 		
 		if sprite.get_rect().has_point(sprite.get_local_mouse_position()):
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			if Input.is_action_just_pressed("select_letter"):
 				var letter = letters[i]
-				if selected_letters.has(letter):
-					selected_letters.erase(letter)
+				if selected_letters.has(i):
+					selected_letters.erase(i)
 				else:
-					selected_letters[letter] = true
+					selected_letters[i] = true
+				print("UPDATE!")
 				update_letters()
