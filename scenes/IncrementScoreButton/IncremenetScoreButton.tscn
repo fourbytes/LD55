@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqru7ir5r7i20"]
+
+[ext_resource type="Script" path="res://scenes/IncrementScoreButton/IncrementScoreButton.gd" id="1_up5tb"]
+
+[node name="IncremenetScoreButton" type="Button"]
+script = ExtResource("1_up5tb")

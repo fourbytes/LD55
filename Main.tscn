@@ -1,24 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://dkjspblca3vrj"]
 
-[ext_resource type="Script" path="res://LetterCircle.gd" id="1_dlm2v"]
 [ext_resource type="Script" path="res://store.gd" id="2_xpaxr"]
-[ext_resource type="PackedScene" uid="uid://67bm50bjl32y" path="res://scoreboard/scoreboard.tscn" id="3_fayng"]
-[ext_resource type="Script" path="res://Button.gd" id="4_wcpmv"]
+[ext_resource type="PackedScene" uid="uid://67bm50bjl32y" path="res://scenes/Scoreboard/Scoreboard.tscn" id="4_ftetj"]
+[ext_resource type="PackedScene" uid="uid://dqru7ir5r7i20" path="res://scenes/IncrementScoreButton/IncremenetScoreButton.tscn" id="5_nk176"]
+[ext_resource type="PackedScene" uid="uid://df4faon2dlwjv" path="res://scenes/LetterCircle/LetterCircle.tscn" id="5_p0uam"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Store" type="Node" parent="."]
 script = ExtResource("2_xpaxr")
 
-[node name="Control" parent="." instance=ExtResource("3_fayng")]
+[node name="Scoreboard" parent="." instance=ExtResource("4_ftetj")]
 
-[node name="Button" type="Button" parent="."]
-offset_left = 176.0
-offset_top = 8.0
-offset_right = 311.0
-offset_bottom = 39.0
-text = "Increment Score"
-script = ExtResource("4_wcpmv")
+[node name="IncremenetScoreButton" parent="." instance=ExtResource("5_nk176")]
 
-[node name="LetterCircle" type="Node2D" parent="."]
-script = ExtResource("1_dlm2v")
+[node name="LetterCircle" parent="." instance=ExtResource("5_p0uam")]
