@@ -127,6 +127,7 @@ func _process(delta):
 	var radius = (num_letters * spacing) / (2 * PI)
 	if radius > min(viewport.size.x, viewport.size.y) / 2:
 		Store.reset_game()
+		return
 	
 	for i in range(num_letters):
 		var sprite = get_child(i + LETTER_CHILDREN_OFFSET)

@@ -2,12 +2,15 @@ class_name Tile
 extends Node
 
 const square_size = 64.0
+const MAX_DUPLICATE_LETTERS = 3
+const MIN_VOWELS = 1
+const VOWELS = ['A', 'E', 'I', 'O', 'U']
 
 var letter: String
 var isSelected: bool = false
 var isHovered: bool = false
 
-var letter_weights = {
+var default_letter_weights = {
 	'E': 12.02, 'T': 9.10, 'A': 8.12, 'O': 7.68, 'I': 7.31,
 	'N': 6.95, 'S': 6.28, 'R': 6.02, 'H': 5.92, 'D': 4.32,
 	'L': 3.98, 'U': 2.88, 'C': 2.71, 'M': 2.61, 'F': 2.30,
@@ -28,7 +31,16 @@ func _init():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()  # Ensure a different seed each time the game starts
 	
-	var total_weight = 100.0
+	var letter_weights = default_letter_weights.duplicate()
+	var requires_vowel = len(Store.tiles.filter(func(t: Tile): return VOWELS.has(t.letter))) < MIN_VOWELS
+	
+	for l in default_letter_weights.keys():
+		if requires_vowel and not VOWELS.has(l):
+			letter_weights.erase(l)
+		if len(Store.tiles.filter(func(t: Tile): return t.letter == l)) >= MAX_DUPLICATE_LETTERS:
+			letter_weights.erase(l)
+		
+	var total_weight = letter_weights.values().reduce(func(a, b): return a + b)
 	var random_weight = rng.randf() * total_weight
 	
 	var cumulative_weight = 0.0
