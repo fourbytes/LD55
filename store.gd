@@ -1,35 +1,33 @@
 extends Node
 
 var score = 0
-var available_letters: Array[Tile] = []
-var selected_letters = {}
+var tiles: Array[Tile] = []
 
 signal score_changed(new_score)
-signal available_letters_changed(new_letters)
-signal selected_letters_changed(new_selected_letters)
+signal tiles_changed(new_tiles)
 
 func increment_score():
 	score += 1
 	score_changed.emit(score)
 
-func add_available_letter():
-	available_letters.append(Tile.new())
+func add_random_tile():
+	tiles.append(Tile.new())
+	tiles_changed.emit(tiles)
 	
-func clear_available_letters(tiles: Array[Tile]):
+func delete_tiles(tiles: Array[Tile]):
 	for tile in tiles:
-		available_letters.erase(tile)
+		tiles.erase(tile)
+	tiles_changed.emit(tiles)
 
-func select_letter(letter: String):
-	assert(len(letter) == 1)
-	var random_index = randi() % (len(available_letters_changed) + 1)
-	# Insert the letter at the random index
-	selected_letters_changed.emit(selected_letters)
+func select_tile(tile: Tile):
+	tile.select()
+	tiles_changed.emit(tiles)
 
-func unselect_letter(letter: String):
-	assert(len(letter) == 1)
-	selected_letters.erase(letter)
-	selected_letters_changed.emit(selected_letters)
+func deselect_tile(tile: Tile):
+	tile.deselect()
+	tiles_changed.emit(tiles)
 
-func reset_selected_letters():
-	selected_letters = []
-	selected_letters_changed.emit(selected_letters)
+func deselect_all_tiles():
+	for tile in tiles:
+		tile.deselect()
+	tiles_changed.emit(tiles)
