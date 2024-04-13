@@ -15,6 +15,14 @@ var letter_weights = {
 	'Z': 0.07
 }
 
+var letter_score_points = {
+	'A': 1, 'B': 3, 'C': 3, 'D': 2, 'E': 1, 'F': 4,
+	'G': 2, 'H': 4, 'I': 1, 'J': 8, 'K': 5, 'L': 1,
+	'M': 3, 'N': 1, 'O': 1, 'P': 3, 'Q': 10, 'R': 1,
+	'S': 1, 'T': 1, 'U': 1, 'V': 4, 'W': 4, 'X': 8,
+	'Y': 4, 'Z': 10
+}
+
 func _init():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()  # Ensure a different seed each time the game starts
@@ -28,6 +36,9 @@ func _init():
 		if random_weight <= cumulative_weight:
 			letter = letter_char
 			break
+
+func get_score_points():
+	return letter_score_points[letter]
 
 func get_sprite():
 	var sprite
