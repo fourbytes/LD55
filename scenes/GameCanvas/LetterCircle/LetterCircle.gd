@@ -1,14 +1,14 @@
 extends Node2D
 
-# Move letters and selected letters to store.gd
-var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+# TODO: Move letters and selected letters to store.gd
+var letters = []
 var selected_letters = {}
 
 var square_size = 96.0
 var spacing = 160.0
 
-var timer_duration = 0.05  # Duration in seconds
-var rotation_speed = 0.25  # Rotation speed in radians per second
+var timer_duration = 1  # Duration in seconds
+var rotation_speed = 0.15  # Rotation speed in radians per second
 
 var elapsed_time = 0.0
 var tween_duration = 0.5
@@ -85,7 +85,8 @@ func _process(delta):
 	var radius = (num_letters * spacing) / (2 * PI)
 	if radius > min(viewport.size.x, viewport.size.y) / 2:
 		letters = []
-		
+		selected_letters = {}
+		update_letters()
 	
 	for i in range(num_letters):
 		var sprite = get_child(i + LETTER_CHILDREN_OFFSET)
