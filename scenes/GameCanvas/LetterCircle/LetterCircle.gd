@@ -7,8 +7,8 @@ var selected_letters = {}
 var square_size = 96.0
 var spacing = 160.0
 
-var timer_duration = 3.0  # Duration in seconds
-var rotation_speed = 0.15  # Rotation speed in radians per second
+var timer_duration = 0.05  # Duration in seconds
+var rotation_speed = 0.25  # Rotation speed in radians per second
 
 var elapsed_time = 0.0
 var tween_duration = 0.5
@@ -80,8 +80,12 @@ func _process(delta):
 	
 	var num_letters = len(letters)
 	var angle_step = 2 * PI / num_letters
-	var screen_center = get_viewport_rect().get_center()
+	var viewport = get_viewport_rect()
+	var screen_center = viewport.get_center()
 	var radius = (num_letters * spacing) / (2 * PI)
+	if radius > min(viewport.size.x, viewport.size.y) / 2:
+		letters = []
+		
 	
 	for i in range(num_letters):
 		var sprite = get_child(i + LETTER_CHILDREN_OFFSET)
