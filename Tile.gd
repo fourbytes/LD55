@@ -1,7 +1,7 @@
 class_name Tile
 extends Node
 
-const square_size = 50.0
+const square_size = 64.0
 
 var letter: String
 var isSelected: bool = false

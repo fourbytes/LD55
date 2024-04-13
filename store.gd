@@ -52,3 +52,11 @@ func submit_word():
 		increment_score(word_score_points)
 	else:
 		print("DIDN'T RECOGNISE %s " % word)
+
+func reset_game():
+	selected_tiles = []
+	tiles = []
+	tiles_changed.emit(tiles)
+	
+	score = 0
+	score_changed.emit(score)

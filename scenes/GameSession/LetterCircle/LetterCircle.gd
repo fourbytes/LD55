@@ -29,10 +29,12 @@ func _ready():
 	update_letters()
 	
 func _on_tiles_changed(new_tiles):
+	print('tiles changed')
 	update_letters()
 
 func _on_viewport_size_changed():
 	update_letters()
+
 func update_letters():
 	print('update letters')
 	var num_letters = len(Store.tiles)
@@ -79,7 +81,7 @@ func _process(delta):
 	var screen_center = viewport.get_center()
 	var radius = (num_letters * spacing) / (2 * PI)
 	if radius > min(viewport.size.x, viewport.size.y) / 2:
-		Store.tiles = []
+		Store.reset_game()
 	
 	for i in range(num_letters):
 		var sprite = get_child(i + LETTER_CHILDREN_OFFSET)
