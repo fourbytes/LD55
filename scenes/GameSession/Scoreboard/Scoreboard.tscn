@@ -12,8 +12,6 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 245.0
-offset_top = 138.0
-offset_right = 285.0
-offset_bottom = 161.0
+offset_right = 40.0
+offset_bottom = 23.0
 script = ExtResource("1_1utvu")

@@ -11,8 +11,6 @@ const tween_duration = 0.5
 
 const LETTER_CHILDREN_OFFSET = 1 # The first child is always the at this stage.
 
-const MAX_LETTER_COUNT = 10 # The highest amt of letters allowed on the screen.
-
 func _ready():
 	get_tree().root.size_changed.connect(_on_viewport_size_changed)
 	Store.tiles_changed.connect(_on_tiles_changed)
@@ -148,7 +146,7 @@ func _process(delta):
 				if tile.isSelected:
 					Store.deselect_tile(tile)
 				else:
-					if len(Store.selected_tiles) < MAX_LETTER_COUNT:
+					if len(Store.selected_tiles) < LetterStage.MAX_LETTER_COUNT:
 						Store.select_tile(tile)
 					else:
 						print("Can't select any more letters")
