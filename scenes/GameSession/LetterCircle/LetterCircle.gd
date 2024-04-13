@@ -96,7 +96,7 @@ func _process(delta):
 				if tile.isSelected:
 					Store.deselect_tile(tile)
 				else:
-					if len(Store.get_selected_tiles()) < MAX_LETTER_COUNT:
+					if len(Store.selected_tiles) < MAX_LETTER_COUNT:
 						Store.select_tile(tile)
 					else:
 						print("Can't select any more letters")

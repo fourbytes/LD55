@@ -42,13 +42,13 @@ func deselect_all_tiles():
 	
 func submit_word():
 	var word = ''
-	var selectedTiles = get_selected_tiles()
+	var selected_tiles_clone = selected_tiles.duplicate()
 	var word_score_points = 0
-	for tile in selectedTiles:
+	for tile in selected_tiles_clone:
 		word += tile.letter
 		word_score_points += tile.get_score_points()
 	if detectWord.is_word_recognised(word):
-		delete_tiles(selectedTiles)
+		delete_tiles(selected_tiles_clone)
 		increment_score(word_score_points)
 	else:
 		print("DIDN'T RECOGNISE %s " % word)
