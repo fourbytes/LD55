@@ -37,7 +37,7 @@ func deselect_tile(tile: Tile):
 
 func deselect_all_tiles():
 	for tile in tiles:
-		tile.deselect()
+		tile.isSelected = false
 	tiles_changed.emit(tiles)
 	
 func submit_word():
