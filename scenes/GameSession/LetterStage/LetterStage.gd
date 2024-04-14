@@ -7,9 +7,9 @@ const GAP = 8
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Store.tiles_changed.connect(_on_tiles_changed)
+	Store.selected_tiles_changed.connect(_on_selected_tiles_changed)
 
-func _on_tiles_changed(tiles: Array[Tile]):
+func _on_selected_tiles_changed(_tiles: Array[Tile]):
 	var viewport_size = get_viewport_rect().size
 	
 	for child in get_children():
@@ -21,12 +21,12 @@ func _on_tiles_changed(tiles: Array[Tile]):
 		var index = Store.selected_tiles.find(tile)
 		var letter_width = (len(Store.selected_tiles) -1) * (tile.square_size - GAP)
 		var x = viewport_size.x/2 - letter_width/2 + index * (tile.square_size+GAP)
-		var y = viewport_size.y - BUTTON_SIZE/2
+		var y = viewport_size.y - float(BUTTON_SIZE/2)
 		sprite.set_position(Vector2(x, y))
 		sprite.z_index = 2
 		add_child(sprite)
 
-func _process(delta):
+func _process(_delta):
 	var num_letters = len(Store.selected_tiles)
 
 	for i in range(num_letters):

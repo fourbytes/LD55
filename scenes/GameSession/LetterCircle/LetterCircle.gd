@@ -16,7 +16,7 @@ func _ready():
 	self.z_index = 0
 	get_tree().root.size_changed.connect(_on_viewport_size_changed)
 	Store.tiles_changed.connect(_on_tiles_changed)
-	Store.score_changed.connect(_on_tiles_changed)
+	Store.score_changed.connect(_on_score_change)
 	
 	# TODO: Move timer into it's own scene.
 	# Start the timer
@@ -27,7 +27,7 @@ func _ready():
 	add_child(timer)
 	timer.start()
 	
-	update_letters()
+
 	
 func get_center():
 	return get_viewport_rect().get_center() - Vector2(0, 64)
@@ -35,13 +35,10 @@ func get_center():
 func _on_score_change(_new_score):
 	elapsed_time = 0.0
 
-func _on_tiles_changed(_new_tiles):
-	update_letters()
-
 func _on_viewport_size_changed():
-	update_letters()
+	_on_tiles_changed([])
 
-func update_letters():
+func _on_tiles_changed(_new_tiles):
 	print('update letters')
 	var num_letters = len(Store.tiles)
 	var angle_step = 2 * PI / num_letters
@@ -112,12 +109,12 @@ func expand_tiles(progress, random_index, _new_tile_position):
 		var new_position = current_position.lerp(target_position, progress)
 		
 		sprite.set_position(new_position)
+	
 
 func add_new_tile(random_index):
 	# Insert the random letter at the random index
 	Store.add_random_tile(random_index)
 	# Update the letters
-	update_letters()
 
 func _process(delta):
 	elapsed_time += delta
@@ -150,7 +147,7 @@ func _process(delta):
 						Store.select_tile(tile)
 					else:
 						print("Can't select any more letters")
-				update_letters()
+
 		else:
 			for child_node in sprite.get_children():
 				if child_node.get_meta('effect_type') == 'hover':
