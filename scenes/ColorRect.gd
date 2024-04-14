@@ -1,8 +1,8 @@
 extends ColorRect
 
 const MAX_TILES = 20
-const MIN_TILES = 8
-const MAX_OPACITY = 0.32
+const MIN_TILES = 12
+const MAX_OPACITY = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,4 +13,4 @@ func _on_tiles_changed(tiles: Array[Tile]):
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "color", Color(255, 0, 0, opacity), 1)
+	tween.tween_property(self, "color", Color(255, 0, 0, opacity), 2)

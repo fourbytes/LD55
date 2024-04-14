@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dkjspblca3vrj"]
+[gd_scene load_steps=18 format=3 uid="uid://dkjspblca3vrj"]
 
 [ext_resource type="PackedScene" uid="uid://dsethylnjstt1" path="res://scenes/GameSession/GameCanvas.tscn" id="1_pmecp"]
 [ext_resource type="Script" path="res://store.gd" id="2_xpaxr"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://byl0fv7x4ka6" path="res://scenes/GameSession/WordReset/WordReset.tscn" id="7_pbk5a"]
 [ext_resource type="Script" path="res://scenes/GameSession/Wizard/Wizard.gd" id="8_yl76f"]
 [ext_resource type="Script" path="res://scenes/ColorRect.gd" id="10_5cg4t"]
+[ext_resource type="AudioStream" uid="uid://bwwvru6dyifeb" path="res://assets/sounds/music/rhinoceros.mp3" id="11_x3jbt"]
+[ext_resource type="Script" path="res://scenes/Music.gd" id="12_qjuog"]
 
 [sub_resource type="Environment" id="Environment_f30or"]
 glow_enabled = true
@@ -77,8 +79,14 @@ offset_left = -81.0
 offset_top = -24.0
 offset_right = 1117.0
 offset_bottom = 1082.0
+mouse_filter = 2
 color = Color(1, 1, 1, 0)
 script = ExtResource("10_5cg4t")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameCanvas"]
+stream = ExtResource("11_x3jbt")
+autoplay = true
+script = ExtResource("12_qjuog")
 
 [node name="Store" type="Node" parent="."]
 script = ExtResource("2_xpaxr")
