@@ -16,6 +16,7 @@ func _ready():
 	self.z_index = 0
 	get_tree().root.size_changed.connect(_on_viewport_size_changed)
 	Store.tiles_changed.connect(_on_tiles_changed)
+	Store.selected_tiles_changed.connect(_on_tiles_changed)
 	Store.score_changed.connect(_on_score_change)
 	
 	# TODO: Move timer into it's own scene.
