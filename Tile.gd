@@ -65,7 +65,7 @@ func get_score_points():
 func get_sprite():
 	var sprite
 	sprite = Sprite2D.new()
-	sprite.texture = load("res://assets/sprites/alpha_tiles/letter_" + letter + ".png")
+	sprite.texture = load("res://assets/sprites/alpha_tiles/Tile " + letter + ".png")
 	var sprite_scale = Vector2(square_size / sprite.texture.get_width(), square_size / sprite.texture.get_height())
 	sprite.set_scale(sprite_scale)
 	return sprite

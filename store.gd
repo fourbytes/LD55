@@ -46,7 +46,7 @@ func submit_word():
 		word_score_points += tile.get_score_points()
 	if detectWord.is_word_recognised(word):
 		delete_tiles(selected_tiles_clone)
-		increment_score(word_score_points)
+		increment_score(word_score_points*len(word))
 	else:
 		print("DIDN'T RECOGNISE %s " % word)
 

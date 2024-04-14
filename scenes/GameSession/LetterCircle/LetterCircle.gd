@@ -141,7 +141,7 @@ func _process(delta):
 		
 		if sprite.get_rect().has_point(sprite.get_local_mouse_position()):
 			var border = Sprite2D.new()
-			border.texture = load("res://assets/sprites/alpha_tiles/letter_" + Store.tiles[i].letter + ".png")
+			border.texture = load("res://assets/sprites/alpha_tiles/Tile " + Store.tiles[i].letter + ".png")
 			border.self_modulate = Color(0, 1, 0, 1)  # Green color
 			border.set_meta('effect_type', 'hover')
 			sprite.add_child(border)
