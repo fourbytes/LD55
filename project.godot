@@ -22,7 +22,7 @@ Store="*res://store.gd"
 [display]
 
 window/size/viewport_width=1024
-window/size/viewport_height=768
+window/size/viewport_height=1024
 window/size/resizable=false
 
 [input]
@@ -35,4 +35,7 @@ select_letter={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=3
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.372549, 0.372549, 0.431373, 1)
+viewport/hdr_2d=true

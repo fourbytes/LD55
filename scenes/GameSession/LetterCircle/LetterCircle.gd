@@ -2,9 +2,10 @@ extends Node2D
 
 # Move letters and selected letters to store.gd
 const spacing = 128.0
+const offset = 80
 
-const timer_duration = 2  # Duration in seconds
-const rotation_speed = 0.25  # Rotation speed in radians per second
+const timer_duration = 2 # Duration in seconds
+const rotation_speed = 0.25 # Rotation speed in radians per second
 
 var elapsed_time = 0.0
 const tween_duration = 0.5
@@ -21,7 +22,7 @@ func _ready():
 	var timer = Timer.new()
 	timer.connect("timeout", _on_timer_timeout)
 	timer.set_wait_time(timer_duration)
-	timer.set_one_shot(false)  # Make the timer repeat
+	timer.set_one_shot(false) # Make the timer repeat
 	add_child(timer)
 	timer.start()
 	
@@ -41,7 +42,7 @@ func update_letters():
 	var num_letters = len(Store.tiles)
 	var angle_step = 2 * PI / num_letters
 	var screen_center = get_viewport_rect().get_center()
-	var radius = (num_letters * spacing) / (2 * PI)
+	var radius = (num_letters * spacing) / (2 * PI) + offset
 	
 	for child in get_children():
 		if child is Sprite2D:
@@ -58,7 +59,7 @@ func update_letters():
 		if Store.tiles[i].isSelected:
 			var border = Sprite2D.new()
 			border.texture = load("res://assets/sprites/alpha_tiles/letter_" + Store.tiles[i].letter + ".png")
-			border.self_modulate = Color(1, 0, 0, 1)  # Red color
+			border.self_modulate = Color(1, 0, 0, 1) # Red color
 			border.set_meta('effect_type', 'selected')
 			border.z_index = 5
 			sprite.add_child(border)
@@ -74,7 +75,7 @@ func _on_timer_timeout():
 	var angle_step = 2 * PI / (num_letters + 1)
 	var viewport = get_viewport_rect()
 	var screen_center = viewport.get_center()
-	var radius = ((num_letters + 1) * spacing) / (2 * PI)
+	var radius = ((num_letters + 1) * spacing) / (2 * PI) + offset
 	var angle = random_index * angle_step + elapsed_time * rotation_speed
 	var x = cos(angle) * radius
 	var y = sin(angle) * radius
@@ -91,7 +92,7 @@ func expand_tiles(progress, random_index, _new_tile_position):
 	var num_letters = len(Store.tiles)
 	var angle_step = 2 * PI / (num_letters + 1)
 	var screen_center = get_viewport_rect().get_center()
-	var radius = ((num_letters + 1) * spacing) / (2 * PI)
+	var radius = ((num_letters + 1) * spacing) / (2 * PI) + offset
 	
 	for i in range(num_letters):
 		var sprite = get_child(i + LETTER_CHILDREN_OFFSET)
@@ -115,8 +116,7 @@ func expand_tiles(progress, random_index, _new_tile_position):
 
 func add_new_tile(random_index):
 	# Insert the random letter at the random index
-	Store.tiles.insert(random_index, Tile.new())
-
+	Store.add_random_tile(random_index)
 	# Update the letters
 	update_letters()
 
@@ -127,7 +127,7 @@ func _process(delta):
 	var angle_step = 2 * PI / num_letters
 	var viewport = get_viewport_rect()
 	var screen_center = viewport.get_center()
-	var radius = (num_letters * spacing) / (2 * PI)
+	var radius = (num_letters * spacing) / (2 * PI) + offset
 	if radius > min(viewport.size.x, viewport.size.y) / 2:
 		Store.reset_game()
 		return
@@ -140,11 +140,8 @@ func _process(delta):
 		sprite.set_position(screen_center + Vector2(x, y))
 		
 		if sprite.get_rect().has_point(sprite.get_local_mouse_position()):
-			var border = Sprite2D.new()
-			border.texture = load("res://assets/sprites/alpha_tiles/Tile " + Store.tiles[i].letter + ".png")
-			border.self_modulate = Color(0, 1, 0, 1)  # Green color
-			border.set_meta('effect_type', 'hover')
-			sprite.add_child(border)
+			sprite.set_modulate(Color(1.2, 1.2, 1.2, 1))
+
 			if Input.is_action_just_pressed("select_letter"):
 				var tile = Store.tiles[i]
 				if tile.isSelected:
@@ -156,6 +153,7 @@ func _process(delta):
 						print("Can't select any more letters")
 				update_letters()
 		else:
+			sprite.set_modulate(Color(1, 1, 1, 1))
 			for child_node in sprite.get_children():
 				if child_node.get_meta('effect_type') == 'hover':
 					sprite.remove_child(child_node)

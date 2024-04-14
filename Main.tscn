@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkjspblca3vrj"]
+[gd_scene load_steps=16 format=3 uid="uid://dkjspblca3vrj"]
 
 [ext_resource type="PackedScene" uid="uid://dsethylnjstt1" path="res://scenes/GameSession/GameCanvas.tscn" id="1_pmecp"]
 [ext_resource type="Script" path="res://store.gd" id="2_xpaxr"]
@@ -6,7 +6,38 @@
 [ext_resource type="PackedScene" uid="uid://cak0pwsoljhgd" path="res://scenes/GameSession/LetterStage/LetterStage.tscn" id="5_cdi50"]
 [ext_resource type="PackedScene" uid="uid://df4faon2dlwjv" path="res://scenes/GameSession/LetterCircle/LetterCircle.tscn" id="5_p0uam"]
 [ext_resource type="PackedScene" uid="uid://bj018de6njd6t" path="res://scenes/GameSession/WordSubmit/WordSubmit.tscn" id="6_2clp1"]
+[ext_resource type="Script" path="res://scenes/WorldEnvironment.gd" id="7_4ukjs"]
+[ext_resource type="Texture2D" uid="uid://b7cjaxdyafbip" path="res://assets/sprites/wizard/wizard.png" id="7_6jhg3"]
 [ext_resource type="PackedScene" uid="uid://byl0fv7x4ka6" path="res://scenes/GameSession/WordReset/WordReset.tscn" id="7_pbk5a"]
+[ext_resource type="Script" path="res://scenes/GameSession/Wizard/Wizard.gd" id="8_yl76f"]
+[ext_resource type="Script" path="res://scenes/ColorRect.gd" id="10_5cg4t"]
+
+[sub_resource type="Environment" id="Environment_f30or"]
+glow_enabled = true
+glow_blend_mode = 1
+fog_light_energy = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn5ru"]
+atlas = ExtResource("7_6jhg3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ub7mu"]
+atlas = ExtResource("7_6jhg3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yl6tk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn5ru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ub7mu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="Main" type="Node2D"]
 
@@ -14,21 +45,40 @@
 
 [node name="Scoreboard" parent="GameCanvas" instance=ExtResource("4_ftetj")]
 
-[node name="LetterCircle" parent="GameCanvas" instance=ExtResource("5_p0uam")]
-
-[node name="LetterStage" parent="GameCanvas" instance=ExtResource("5_cdi50")]
-
 [node name="WordSubmit" parent="GameCanvas" instance=ExtResource("6_2clp1")]
-offset_left = 886.0
-offset_top = 630.0
-offset_right = 1022.0
-offset_bottom = 766.0
+offset_left = 887.0
+offset_top = 886.0
+offset_right = 1023.0
+offset_bottom = 1022.0
 
 [node name="WordReset" parent="GameCanvas" instance=ExtResource("7_pbk5a")]
 offset_left = 3.0
-offset_top = 632.0
+offset_top = 888.0
 offset_right = 139.0
-offset_bottom = 768.0
+offset_bottom = 1024.0
+
+[node name="LetterStage" parent="GameCanvas" instance=ExtResource("5_cdi50")]
+
+[node name="LetterCircle" parent="GameCanvas" instance=ExtResource("5_p0uam")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="GameCanvas"]
+environment = SubResource("Environment_f30or")
+script = ExtResource("7_4ukjs")
+
+[node name="Wizard" type="AnimatedSprite2D" parent="GameCanvas"]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_yl6tk")
+frame = 1
+frame_progress = 0.0451895
+script = ExtResource("8_yl76f")
+
+[node name="ColorRect" type="ColorRect" parent="GameCanvas"]
+offset_left = -81.0
+offset_top = -24.0
+offset_right = 1117.0
+offset_bottom = 1082.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("10_5cg4t")
 
 [node name="Store" type="Node" parent="."]
 script = ExtResource("2_xpaxr")

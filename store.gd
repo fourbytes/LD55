@@ -12,8 +12,8 @@ func increment_score(amount = 1):
 	score += amount
 	score_changed.emit(score)
 
-func add_random_tile():
-	tiles.append(Tile.new())
+func add_random_tile(random_index: int):
+	tiles.insert(random_index, Tile.new())
 	tiles_changed.emit(tiles)
 	
 func delete_tiles(tilesToDelete: Array[Tile]):

@@ -9,6 +9,8 @@ const VOWELS = ['A', 'E', 'I', 'O', 'U']
 var letter: String
 var isSelected: bool = false
 var isHovered: bool = false
+var sprite: Sprite2D
+var running_clock
 
 var default_letter_weights = {
 	'E': 12.02, 'T': 9.10, 'A': 8.12, 'O': 7.68, 'I': 7.31,
@@ -49,6 +51,12 @@ func _init():
 		if random_weight <= cumulative_weight:
 			letter = letter_char
 			break
+			
+	sprite = Sprite2D.new()
+	sprite.texture = load("res://assets/sprites/alpha_tiles/Tile " + letter + ".png")
+	var sprite_scale = Vector2(square_size / sprite.texture.get_width(), square_size / sprite.texture.get_height())
+	sprite.set_scale(sprite_scale)
+
 
 func calculate_multiplier(length: float) -> float:
 	var shift: float = 9.0  # This shifts the curve to the right
@@ -63,9 +71,4 @@ func get_score_points():
 	return letter_score_points[letter] * calculate_multiplier(len(Store.selected_tiles))
 
 func get_sprite():
-	var sprite
-	sprite = Sprite2D.new()
-	sprite.texture = load("res://assets/sprites/alpha_tiles/Tile " + letter + ".png")
-	var sprite_scale = Vector2(square_size / sprite.texture.get_width(), square_size / sprite.texture.get_height())
-	sprite.set_scale(sprite_scale)
-	return sprite
+	return sprite.duplicate()
