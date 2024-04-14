@@ -4,6 +4,7 @@ var score = 0
 var tiles: Array[Tile] = []
 var selected_tiles: Array[Tile] = []
 var detectWord = DetectWord.new()
+var currentSession = GameSession.new()
 
 signal score_changed(new_score)
 signal tiles_changed(new_tiles)
