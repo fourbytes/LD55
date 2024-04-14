@@ -11,6 +11,7 @@ var elapsed_time = 0.0
 const tween_duration = 0.5
 
 const LETTER_CHILDREN_OFFSET = 1 # The first child is always the at this stage.
+var screen_center
 
 func _ready():
 	self.z_index = 0
@@ -18,6 +19,7 @@ func _ready():
 	Store.tiles_changed.connect(_on_tiles_changed)
 	Store.selected_tiles_changed.connect(_on_tiles_changed)
 	Store.score_changed.connect(_on_score_change)
+	screen_center = get_viewport_rect().get_center() - Vector2(0, 64)
 	
 	# TODO: Move timer into it's own scene.
 	# Start the timer
@@ -28,22 +30,16 @@ func _ready():
 	add_child(timer)
 	timer.start()
 	
-
-	
-func get_center():
-	return get_viewport_rect().get_center() - Vector2(0, 64)
-	
 func _on_score_change(_new_score):
 	elapsed_time = 0.0
 
 func _on_viewport_size_changed():
-	_on_tiles_changed([])
+	_on_tiles_changed(null)
 
 func _on_tiles_changed(_new_tiles):
 	print('update letters')
 	var num_letters = len(Store.tiles)
 	var angle_step = 2 * PI / num_letters
-	var screen_center = get_center()
 	var radius = (num_letters * spacing) / (2 * PI) + offset
 	
 	for child in get_children():
@@ -71,7 +67,6 @@ func _on_timer_timeout():
 	# Calculate the position of the next tile before adding it
 	var num_letters = len(Store.tiles)
 	var angle_step = 2 * PI / (num_letters + 1)
-	var screen_center = get_center()
 	var radius = ((num_letters + 1) * spacing) / (2 * PI) + offset
 	var angle = random_index * angle_step + elapsed_time * rotation_speed
 	var x = cos(angle) * radius
@@ -88,7 +83,6 @@ func _on_timer_timeout():
 func expand_tiles(progress, random_index, _new_tile_position):
 	var num_letters = len(Store.tiles)
 	var angle_step = 2 * PI / (num_letters + 1)
-	var screen_center = get_center()
 	var radius = ((num_letters + 1) * spacing) / (2 * PI) + offset
 	
 	for i in range(num_letters):
@@ -123,7 +117,6 @@ func _process(delta):
 	var num_letters = len(Store.tiles)
 	var angle_step = 2 * PI / num_letters
 	var viewport = get_viewport_rect()
-	var screen_center = get_center()
 	var radius = (num_letters * spacing) / (2 * PI) + offset
 	if radius > min(viewport.size.x, viewport.size.y - 128) / 2:
 		Store.reset_game()
