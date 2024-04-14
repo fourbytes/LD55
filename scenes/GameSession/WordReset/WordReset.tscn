@@ -1,10 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://byl0fv7x4ka6"]
 
-[ext_resource type="Texture2D" uid="uid://cavehpl381s5r" path="res://assets/sprites/icons/Reset Icon.png" id="1_myug6"]
+[ext_resource type="Texture2D" uid="uid://d2tuc74c36ydl" path="res://assets/sprites/icons/reset.png" id="1_paocd"]
 [ext_resource type="Script" path="res://scenes/GameSession/WordReset/WordReset.gd" id="1_wq2cp"]
 
 [node name="WordReset" type="Button"]
-offset_right = 136.0
-offset_bottom = 136.0
-icon = ExtResource("1_myug6")
+offset_right = 128.0
+offset_bottom = 128.0
+icon = ExtResource("1_paocd")
+flat = true
+expand_icon = true
 script = ExtResource("1_wq2cp")

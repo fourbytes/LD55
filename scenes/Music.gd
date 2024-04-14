@@ -11,10 +11,10 @@ func _ready():
 	Store.tiles_changed.connect(_on_tiles_changed)
 
 func _on_tiles_changed(tiles: Array[Tile]):
-	var speed = (float(len(tiles)-MIN_TILES)/MAX_TILES)*MAX_SPEED + MIN_SPEED
+	var raw_speed = (float(len(tiles)-MIN_TILES)/MAX_TILES)*MAX_SPEED + MIN_SPEED
+	var bounded_speed = maxf(minf(raw_speed, MAX_SPEED), MIN_SPEED)
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_OUT)
 
-	print(speed)
-	tween.tween_property(self, "pitch_scale", maxf(minf(speed, MAX_SPEED), MIN_SPEED), 2)
+	tween.tween_property(self, "pitch_scale", bounded_speed, 2)

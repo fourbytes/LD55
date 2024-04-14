@@ -23,6 +23,7 @@ func _on_tiles_changed(tiles: Array[Tile]):
 		var x = viewport_size.x/2 - letter_width/2 + index * (tile.square_size+GAP)
 		var y = viewport_size.y - BUTTON_SIZE/2
 		sprite.set_position(Vector2(x, y))
+		sprite.z_index = 2
 		add_child(sprite)
 
 func _process(delta):

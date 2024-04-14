@@ -1,3 +1,18 @@
-[gd_scene format=3 uid="uid://dsethylnjstt1"]
+[gd_scene load_steps=2 format=3 uid="uid://dsethylnjstt1"]
+
+[sub_resource type="GDScript" id="GDScript_juxvs"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.z_index = 0
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [node name="GameCanvas" type="Node2D"]
+script = SubResource("GDScript_juxvs")

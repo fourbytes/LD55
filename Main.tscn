@@ -44,20 +44,18 @@ animations = [{
 [node name="Main" type="Node2D"]
 
 [node name="GameCanvas" parent="." instance=ExtResource("1_pmecp")]
+script = null
+
+[node name="ColorRect" type="ColorRect" parent="GameCanvas"]
+offset_left = -81.0
+offset_top = -24.0
+offset_right = 1117.0
+offset_bottom = 1082.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+script = ExtResource("10_5cg4t")
 
 [node name="Scoreboard" parent="GameCanvas" instance=ExtResource("4_ftetj")]
-
-[node name="WordSubmit" parent="GameCanvas" instance=ExtResource("6_2clp1")]
-offset_left = 887.0
-offset_top = 886.0
-offset_right = 1023.0
-offset_bottom = 1022.0
-
-[node name="WordReset" parent="GameCanvas" instance=ExtResource("7_pbk5a")]
-offset_left = 3.0
-offset_top = 888.0
-offset_right = 139.0
-offset_bottom = 1024.0
 
 [node name="LetterStage" parent="GameCanvas" instance=ExtResource("5_cdi50")]
 
@@ -74,19 +72,20 @@ frame = 1
 frame_progress = 0.0451895
 script = ExtResource("8_yl76f")
 
-[node name="ColorRect" type="ColorRect" parent="GameCanvas"]
-offset_left = -81.0
-offset_top = -24.0
-offset_right = 1117.0
-offset_bottom = 1082.0
-mouse_filter = 2
-color = Color(1, 1, 1, 0)
-script = ExtResource("10_5cg4t")
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameCanvas"]
 stream = ExtResource("11_x3jbt")
 autoplay = true
 script = ExtResource("12_qjuog")
+
+[node name="WordReset" parent="GameCanvas" instance=ExtResource("7_pbk5a")]
+offset_top = 896.0
+offset_bottom = 1024.0
+
+[node name="WordSubmit" parent="GameCanvas" instance=ExtResource("6_2clp1")]
+offset_left = 896.0
+offset_top = 896.0
+offset_right = 1024.0
+offset_bottom = 1024.0
 
 [node name="Store" type="Node" parent="."]
 script = ExtResource("2_xpaxr")

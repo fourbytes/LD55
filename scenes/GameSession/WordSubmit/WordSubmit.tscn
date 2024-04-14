@@ -1,8 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://bj018de6njd6t"]
 
-[ext_resource type="Texture2D" uid="uid://oem10dnrxrah" path="res://assets/sprites/icons/accept.png" id="1_ys00h"]
+[ext_resource type="Texture2D" uid="uid://beh8pw4tiga3q" path="res://assets/sprites/icons/check.png" id="1_8gjfc"]
 [ext_resource type="Script" path="res://scenes/GameSession/WordSubmit/WordSubmit.gd" id="2_i541o"]
 
 [node name="WordSubmit" type="Button"]
-icon = ExtResource("1_ys00h")
+top_level = true
+offset_right = 128.0
+offset_bottom = 128.0
+icon = ExtResource("1_8gjfc")
+flat = true
+expand_icon = true
 script = ExtResource("2_i541o")

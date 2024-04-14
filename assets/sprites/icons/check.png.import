@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cavehpl381s5r"
-path="res://.godot/imported/Reset Icon.png-28809810c9b8d7b4a6cbdcd139411c5d.ctex"
+uid="uid://beh8pw4tiga3q"
+path="res://.godot/imported/check.png-5e04c6382f30bd97498e8beed0dc4f5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/icons/Reset Icon.png"
-dest_files=["res://.godot/imported/Reset Icon.png-28809810c9b8d7b4a6cbdcd139411c5d.ctex"]
+source_file="res://assets/sprites/icons/check.png"
+dest_files=["res://.godot/imported/check.png-5e04c6382f30bd97498e8beed0dc4f5d.ctex"]
 
 [params]
 
