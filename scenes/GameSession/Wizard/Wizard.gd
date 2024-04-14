@@ -6,8 +6,3 @@ func _ready():
 	self.play('default')
 	var viewport_size = get_viewport_rect().size
 	self.set_position(Vector2(viewport_size.x/2, viewport_size.y/2 - 64))
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

@@ -8,6 +8,3 @@ func _ready():
 	self.size = Vector2(viewport_size.x, 128)
 	self.z_index = 1
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

@@ -2,7 +2,7 @@ extends AudioStreamPlayer
 
 const MAX_TILES = 20
 const MIN_TILES = 12
-const MIN_SPEED = 1
+const MIN_SPEED = 120.0/126.0
 const MAX_SPEED = MIN_SPEED*1.3
 
 # Called when the node enters the scene tree for the first time.
