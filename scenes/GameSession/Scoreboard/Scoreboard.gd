@@ -6,7 +6,7 @@ func _ready():
 	var viewport_size = get_viewport_rect().size
 	set_position(Vector2(viewport_size.x/2.0 - 24, viewport_size.y/2.0))
 
-	_on_score_changed(0)
+	_on_score_changed(Store.score)
 
 func _on_score_changed(score: int):
 	self.set_text(str(score))
