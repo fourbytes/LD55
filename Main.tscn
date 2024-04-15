@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://dkjspblca3vrj"]
+[gd_scene load_steps=18 format=3 uid="uid://dkjspblca3vrj"]
 
 [ext_resource type="PackedScene" uid="uid://dsethylnjstt1" path="res://scenes/GameSession/GameCanvas.tscn" id="1_pmecp"]
-[ext_resource type="PackedScene" uid="uid://bpunc8pumot2u" path="res://scenes/GameOver.tscn" id="1_yjf14"]
 [ext_resource type="Script" path="res://store.gd" id="2_xpaxr"]
 [ext_resource type="PackedScene" uid="uid://d2bytwpjq4yl8" path="res://scenes/GameSession/Scoreboard/Scoreboard.tscn" id="4_ftetj"]
 [ext_resource type="PackedScene" uid="uid://cak0pwsoljhgd" path="res://scenes/GameSession/LetterStage/LetterStage.tscn" id="5_cdi50"]
@@ -43,8 +42,6 @@ animations = [{
 }]
 
 [node name="Main" type="Node2D"]
-
-[node name="GameOver" parent="." instance=ExtResource("1_yjf14")]
 
 [node name="GameCanvas" parent="." instance=ExtResource("1_pmecp")]
 script = null
