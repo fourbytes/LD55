@@ -124,7 +124,7 @@ func _process(delta):
 	var angle_step = 2 * PI / num_letters
 	var viewport = get_viewport_rect()
 	var radius = (num_letters * spacing) / (2 * PI) + offset
-	var max_diameter = float(min(viewport.size.x, viewport.size.y)) - Tile.square_size
+	var max_diameter = float(min(viewport.size.x, viewport.size.y)) - Tile.square_size - 32
 	if radius > max_diameter / 2:
 		game_over()
 		return

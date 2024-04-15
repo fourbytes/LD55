@@ -28,11 +28,6 @@ shader_parameter/alpha = 1.0
 shader_parameter/inner_radius = 0.0
 shader_parameter/outer_radius = 1.0
 
-[sub_resource type="Environment" id="Environment_f30or"]
-glow_enabled = true
-glow_blend_mode = 1
-fog_light_energy = 0.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_cn5ru"]
 atlas = ExtResource("7_6jhg3")
 region = Rect2(0, 0, 16, 16)
@@ -54,6 +49,11 @@ animations = [{
 "name": &"default",
 "speed": 2.0
 }]
+
+[sub_resource type="Environment" id="Environment_f30or"]
+glow_enabled = true
+glow_blend_mode = 1
+fog_light_energy = 0.0
 
 [sub_resource type="Theme" id="Theme_73bv1"]
 default_font = ExtResource("14_thghk")
@@ -101,10 +101,6 @@ anchor_bottom = 0.5
 
 [node name="LetterStage" parent="GameCanvas" instance=ExtResource("5_cdi50")]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="GameCanvas"]
-environment = SubResource("Environment_f30or")
-script = ExtResource("7_4ukjs")
-
 [node name="Wizard" type="AnimatedSprite2D" parent="GameCanvas"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_yl6tk")
@@ -143,6 +139,10 @@ offset_left = 16.0
 offset_top = 912.0
 offset_right = 112.0
 offset_bottom = 1008.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="GameCanvas"]
+environment = SubResource("Environment_f30or")
+script = ExtResource("7_4ukjs")
 
 [node name="GameOver" parent="." instance=ExtResource("13_8alef")]
 visible = false
