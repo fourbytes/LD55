@@ -137,7 +137,6 @@ func _process(delta):
 	
 		# Apply a smooth slowdown curve
 		slowdown_factor = 1.0 - (diameter_ratio * 0.5)
-		print(slowdown_factor)
 	# Apply the slowdown factor to the timer
 	timer.set_wait_time(timer_duration / slowdown_factor)
 	
