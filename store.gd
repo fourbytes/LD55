@@ -22,6 +22,7 @@ signal tiles_changed(new_tiles)
 signal selected_tiles_changed(new_tiles)
 signal word_complete()
 signal word_wrong()
+signal word_reset()
 
 func increment_score(amount = 1):
 	score += amount
@@ -48,10 +49,12 @@ func deselect_tile(tile: Tile):
 	selected_tiles_changed.emit(tiles)
 
 func deselect_all_tiles():
-	selected_tiles = []
-	for tile in tiles:
-		tile.isSelected = false
-	selected_tiles_changed.emit(tiles)
+	if len(selected_tiles) > 0:
+		word_reset.emit()
+		selected_tiles = []
+		for tile in tiles:
+			tile.isSelected = false
+		selected_tiles_changed.emit(tiles)
 	
 func submit_word():
 	var word = ''
