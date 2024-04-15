@@ -1,23 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2bytwpjq4yl8"]
+[gd_scene load_steps=2 format=3 uid="uid://d2bytwpjq4yl8"]
 
 [ext_resource type="Script" path="res://scenes/GameSession/Scoreboard/Scoreboard.gd" id="1_1utvu"]
-[ext_resource type="FontFile" uid="uid://1yi50wv7ciot" path="res://assets/fonts/NorseBold-2Kge.otf" id="1_bty2x"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ehl20"]
-font = ExtResource("1_bty2x")
-font_size = 48
 
 [node name="Scoreboard" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 2
-offset_right = 48.0
-offset_bottom = 48.0
-size_flags_horizontal = 4
-label_settings = SubResource("LabelSettings_ehl20")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 horizontal_alignment = 1
-vertical_alignment = 1
-justification_flags = 0
 script = ExtResource("1_1utvu")
