@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dkjspblca3vrj"]
+[gd_scene load_steps=24 format=3 uid="uid://dkjspblca3vrj"]
 
 [ext_resource type="PackedScene" uid="uid://dsethylnjstt1" path="res://scenes/GameSession/GameCanvas.tscn" id="1_pmecp"]
 [ext_resource type="PackedScene" uid="uid://d2bytwpjq4yl8" path="res://scenes/GameSession/Scoreboard/Scoreboard.tscn" id="4_ftetj"]
@@ -13,7 +13,11 @@
 [ext_resource type="AudioStream" uid="uid://bwwvru6dyifeb" path="res://assets/sounds/music/rhinoceros.mp3" id="11_x3jbt"]
 [ext_resource type="Script" path="res://scenes/Music.gd" id="12_qjuog"]
 [ext_resource type="PackedScene" uid="uid://bpunc8pumot2u" path="res://scenes/GameOver/GameOver.tscn" id="13_8alef"]
+[ext_resource type="AudioStream" uid="uid://3k5ebg8vro4o" path="res://assets/sounds/effects/Word Complete.wav" id="14_1o2rw"]
 [ext_resource type="FontFile" uid="uid://1yi50wv7ciot" path="res://assets/fonts/NorseBold-2Kge.otf" id="14_thghk"]
+[ext_resource type="AudioStream" uid="uid://dk40i4prmhk8m" path="res://assets/sounds/effects/Word Wrong.wav" id="15_20jy8"]
+[ext_resource type="Script" path="res://scenes/WordComplete.gd" id="15_hcild"]
+[ext_resource type="Script" path="res://scenes/WordWrong.gd" id="17_mo6eq"]
 
 [sub_resource type="Environment" id="Environment_f30or"]
 glow_enabled = true
@@ -82,8 +86,9 @@ frame = 1
 frame_progress = 0.0451895
 script = ExtResource("8_yl76f")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameCanvas"]
+[node name="Music" type="AudioStreamPlayer" parent="GameCanvas"]
 stream = ExtResource("11_x3jbt")
+volume_db = -10.0
 autoplay = true
 script = ExtResource("12_qjuog")
 
@@ -98,6 +103,13 @@ offset_top = 900.0
 offset_right = 1016.0
 offset_bottom = 1020.0
 
+[node name="WordComplete" type="AudioStreamPlayer" parent="GameCanvas"]
+stream = ExtResource("14_1o2rw")
+script = ExtResource("15_hcild")
+
+[node name="WordWrong" type="AudioStreamPlayer" parent="GameCanvas"]
+stream = ExtResource("15_20jy8")
+script = ExtResource("17_mo6eq")
+
 [node name="GameOver" parent="." instance=ExtResource("13_8alef")]
-visible = false
 theme = SubResource("Theme_73bv1")

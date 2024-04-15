@@ -20,6 +20,8 @@ var scoreboard = [{
 signal score_changed(new_score)
 signal tiles_changed(new_tiles)
 signal selected_tiles_changed(new_tiles)
+signal word_complete()
+signal word_wrong()
 
 func increment_score(amount = 1):
 	score += amount
@@ -61,8 +63,10 @@ func submit_word():
 	if detectWord.is_word_recognised(word):
 		delete_tiles(selected_tiles_clone)
 		increment_score(word_score_points*len(word))
+		word_complete.emit()
 	else:
-		print("DIDN'T RECOGNISE %s " % word)
+		word_wrong.emit()
+
 
 func reset_game():
 	selected_tiles = []
