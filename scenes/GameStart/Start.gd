@@ -1,7 +1,4 @@
 extends Button
 
-func _pressed():
-	print('pressed restart')
-	Store.reset_game()
-	
+func _pressed():	
 	get_tree().change_scene_to_file("res://scenes/GameSession/GameSession.tscn")

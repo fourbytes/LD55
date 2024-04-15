@@ -1,0 +1,145 @@
+[gd_scene load_steps=25 format=3 uid="uid://dsethylnjstt1"]
+
+[ext_resource type="Script" path="res://scenes/RedHaze.gd" id="1_6msw3"]
+[ext_resource type="Shader" path="res://scenes/Vignette.gdshader" id="2_s5sx0"]
+[ext_resource type="PackedScene" uid="uid://df4faon2dlwjv" path="res://scenes/GameSession/LetterCircle/LetterCircle.tscn" id="3_u3h6d"]
+[ext_resource type="PackedScene" uid="uid://d2bytwpjq4yl8" path="res://scenes/GameSession/Scoreboard/Scoreboard.tscn" id="4_kfkxu"]
+[ext_resource type="PackedScene" uid="uid://cak0pwsoljhgd" path="res://scenes/GameSession/LetterStage/LetterStage.tscn" id="5_00ngn"]
+[ext_resource type="Texture2D" uid="uid://b7cjaxdyafbip" path="res://assets/sprites/wizard/wizard.png" id="6_4wfls"]
+[ext_resource type="Script" path="res://scenes/GameSession/Wizard/Wizard.gd" id="7_hbv6c"]
+[ext_resource type="AudioStream" uid="uid://bwwvru6dyifeb" path="res://assets/sounds/music/rhinoceros.mp3" id="8_45hu5"]
+[ext_resource type="Script" path="res://scenes/Music.gd" id="9_2lmy0"]
+[ext_resource type="AudioStream" uid="uid://3k5ebg8vro4o" path="res://assets/sounds/effects/Word Complete.wav" id="10_2echf"]
+[ext_resource type="Script" path="res://scenes/WordComplete.gd" id="11_oevhp"]
+[ext_resource type="AudioStream" uid="uid://dk40i4prmhk8m" path="res://assets/sounds/effects/Word Wrong.wav" id="12_qd52l"]
+[ext_resource type="Script" path="res://scenes/WordWrong.gd" id="13_xnrb8"]
+[ext_resource type="AudioStream" uid="uid://b6k20uuimn130" path="res://assets/sounds/effects/Word Reset.wav" id="14_5viy3"]
+[ext_resource type="Script" path="res://scenes/WordReset.gd" id="15_t7aw4"]
+[ext_resource type="PackedScene" uid="uid://bj018de6njd6t" path="res://scenes/GameSession/WordSubmit/WordSubmit.tscn" id="16_6y4jb"]
+[ext_resource type="PackedScene" uid="uid://byl0fv7x4ka6" path="res://scenes/GameSession/WordReset/WordReset.tscn" id="17_arm3q"]
+[ext_resource type="Script" path="res://scenes/WorldEnvironment.gd" id="18_a6nra"]
+
+[sub_resource type="GDScript" id="GDScript_juxvs"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.z_index = 0
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7dtlw"]
+shader = ExtResource("2_s5sx0")
+shader_parameter/alpha = 1.0
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn5ru"]
+atlas = ExtResource("6_4wfls")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ub7mu"]
+atlas = ExtResource("6_4wfls")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v2eav"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn5ru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ub7mu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="Environment" id="Environment_04411"]
+glow_enabled = true
+glow_blend_mode = 1
+fog_light_energy = 0.0
+
+[node name="GameCanvas" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_juxvs")
+
+[node name="Haze" type="ColorRect" parent="."]
+z_index = 2
+offset_right = 1024.0
+offset_bottom = 1024.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_6msw3")
+
+[node name="Vignette" type="ColorRect" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_7dtlw")
+offset_left = 64.0
+offset_right = 960.0
+offset_bottom = 896.0
+
+[node name="Background" type="ColorRect" parent="."]
+clip_contents = true
+offset_left = 64.0
+offset_right = 960.0
+offset_bottom = 896.0
+color = Color(0.372549, 0.372549, 0.431373, 1)
+
+[node name="LetterCircle" parent="Background" instance=ExtResource("3_u3h6d")]
+
+[node name="Scoreboard" parent="." instance=ExtResource("4_kfkxu")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="LetterStage" parent="." instance=ExtResource("5_00ngn")]
+
+[node name="Wizard" type="AnimatedSprite2D" parent="."]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_v2eav")
+script = ExtResource("7_hbv6c")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_45hu5")
+volume_db = -10.0
+autoplay = true
+script = ExtResource("9_2lmy0")
+
+[node name="WordComplete" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_2echf")
+script = ExtResource("11_oevhp")
+
+[node name="WordWrong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_qd52l")
+script = ExtResource("13_xnrb8")
+
+[node name="WordReset2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_5viy3")
+script = ExtResource("15_t7aw4")
+
+[node name="WordSubmit" parent="." instance=ExtResource("16_6y4jb")]
+offset_left = 912.0
+offset_top = 912.0
+offset_right = 1008.0
+offset_bottom = 1008.0
+
+[node name="WordReset" parent="." instance=ExtResource("17_arm3q")]
+offset_left = 16.0
+offset_top = 912.0
+offset_right = 112.0
+offset_bottom = 1008.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_04411")
+script = ExtResource("18_a6nra")
