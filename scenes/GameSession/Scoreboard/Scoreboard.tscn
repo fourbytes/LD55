@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2bytwpjq4yl8"]
+[gd_scene load_steps=4 format=3 uid="uid://d2bytwpjq4yl8"]
 
 [ext_resource type="Script" path="res://scenes/GameSession/Scoreboard/Scoreboard.gd" id="1_1utvu"]
+[ext_resource type="FontFile" uid="uid://1yi50wv7ciot" path="res://assets/fonts/NorseBold-2Kge.otf" id="1_o2oeh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wrtw4"]
+font = ExtResource("1_o2oeh")
+font_size = 48
 
 [node name="Scoreboard" type="Control"]
 layout_mode = 3
@@ -14,5 +19,6 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_wrtw4")
 horizontal_alignment = 1
 script = ExtResource("1_1utvu")

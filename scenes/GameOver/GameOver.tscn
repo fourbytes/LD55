@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpunc8pumot2u"]
 
-[ext_resource type="Script" path="res://scenes/GameSession/Scoreboard/Scoreboard.gd" id="1_1upn8"]
-[ext_resource type="Script" path="res://scenes/RestartButton.gd" id="1_p45l1"]
+[ext_resource type="Script" path="res://scenes/GameSession/Scoreboard/Scoreboard.gd" id="1_4fuia"]
+[ext_resource type="Script" path="res://scenes/RestartButton.gd" id="2_03q1h"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -19,9 +19,9 @@ layout_mode = 2
 layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("1_1upn8")
+script = ExtResource("1_4fuia")
 
 [node name="RestartButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Restart"
-script = ExtResource("1_p45l1")
+script = ExtResource("2_03q1h")

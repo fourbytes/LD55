@@ -6,6 +6,17 @@ var selected_tiles: Array[Tile] = []
 var detectWord = DetectWord.new()
 var currentSession = GameSession.new()
 
+var scoreboard = [{
+	score: 1000,
+	name: "OJR"
+}, {
+	score: 500,
+	name: "EJ",
+}, {
+	score: 50,
+	name: "FOU"
+}]
+
 signal score_changed(new_score)
 signal tiles_changed(new_tiles)
 signal selected_tiles_changed(new_tiles)
