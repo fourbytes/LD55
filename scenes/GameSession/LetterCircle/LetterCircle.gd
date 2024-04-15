@@ -113,7 +113,7 @@ func add_new_tile(random_index):
 	
 func game_over():
 	# Change the current scene to the GameOver.tscn scene
-	get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
+	get_tree().change_scene_to_file("res://scenes/GameOver/GameOver.tscn")
 
 func _process(delta):
 	elapsed_time += delta

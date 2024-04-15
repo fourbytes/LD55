@@ -1,12 +1,14 @@
-[gd_scene format=3 uid="uid://bx28x8s7ecoo5"]
+[gd_scene load_steps=3 format=3 uid="uid://bx28x8s7ecoo5"]
+
+[ext_resource type="FontFile" uid="uid://1yi50wv7ciot" path="res://assets/fonts/NorseBold-2Kge.otf" id="1_ahxq2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_da0ee"]
+font = ExtResource("1_ahxq2")
+font_size = 32
 
 [node name="Scoreboard" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -16,14 +18,16 @@ color = Color(0.117647, 0.117647, 0.117647, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_right = -500.0
-offset_bottom = -400.0
+offset_left = -61.0
+offset_right = 61.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 text = "Scoreboard"
+label_settings = SubResource("LabelSettings_da0ee")

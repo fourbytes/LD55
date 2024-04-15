@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dkjspblca3vrj"]
+[gd_scene load_steps=20 format=3 uid="uid://dkjspblca3vrj"]
 
 [ext_resource type="PackedScene" uid="uid://dsethylnjstt1" path="res://scenes/GameSession/GameCanvas.tscn" id="1_pmecp"]
 [ext_resource type="PackedScene" uid="uid://d2bytwpjq4yl8" path="res://scenes/GameSession/Scoreboard/Scoreboard.tscn" id="4_ftetj"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://scenes/RedHaze.gd" id="10_5cg4t"]
 [ext_resource type="AudioStream" uid="uid://bwwvru6dyifeb" path="res://assets/sounds/music/rhinoceros.mp3" id="11_x3jbt"]
 [ext_resource type="Script" path="res://scenes/Music.gd" id="12_qjuog"]
+[ext_resource type="PackedScene" uid="uid://bpunc8pumot2u" path="res://scenes/GameOver/GameOver.tscn" id="13_8alef"]
+[ext_resource type="FontFile" uid="uid://1yi50wv7ciot" path="res://assets/fonts/NorseBold-2Kge.otf" id="14_thghk"]
 
 [sub_resource type="Environment" id="Environment_f30or"]
 glow_enabled = true
@@ -39,6 +41,10 @@ animations = [{
 "name": &"default",
 "speed": 2.0
 }]
+
+[sub_resource type="Theme" id="Theme_73bv1"]
+default_font = ExtResource("14_thghk")
+default_font_size = 24
 
 [node name="Main" type="Node2D"]
 
@@ -91,3 +97,7 @@ offset_left = 896.0
 offset_top = 900.0
 offset_right = 1016.0
 offset_bottom = 1020.0
+
+[node name="GameOver" parent="." instance=ExtResource("13_8alef")]
+visible = false
+theme = SubResource("Theme_73bv1")
