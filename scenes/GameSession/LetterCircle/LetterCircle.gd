@@ -110,6 +110,10 @@ func add_new_tile(random_index):
 	# Insert the random letter at the random index
 	Store.add_random_tile(random_index)
 	# Update the letters
+	
+func game_over():
+	# Change the current scene to the GameOver.tscn scene
+	get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
 
 func _process(delta):
 	elapsed_time += delta
@@ -119,7 +123,7 @@ func _process(delta):
 	var viewport = get_viewport_rect()
 	var radius = (num_letters * spacing) / (2 * PI) + offset
 	if radius > min(viewport.size.x, viewport.size.y - 128) / 2:
-		Store.reset_game()
+		game_over()
 		return
 	
 	for i in range(num_letters):
