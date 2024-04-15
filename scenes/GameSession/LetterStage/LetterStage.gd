@@ -19,8 +19,8 @@ func _on_selected_tiles_changed(_tiles: Array[Tile]):
 	for tile in Store.selected_tiles:
 		var sprite = tile.get_sprite()
 		var index = Store.selected_tiles.find(tile)
-		var letter_width = (len(Store.selected_tiles) -1) * (tile.square_size - GAP)
-		var x = viewport_size.x/2 - letter_width/2 + index * (tile.square_size+GAP)
+		var letter_width = (len(Store.selected_tiles) -1) * (tile.square_size + GAP)
+		var x = viewport_size.x/2 - letter_width/2 + index * (tile.square_size + GAP)
 		var y = viewport_size.y - float(BUTTON_SIZE/2)
 		sprite.set_position(Vector2(x, y))
 		sprite.z_index = 2
