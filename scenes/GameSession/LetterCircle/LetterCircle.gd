@@ -5,13 +5,14 @@ const spacing = 128.0
 const offset = 80
 
 const timer_duration = 2 # Duration in seconds
-const rotation_speed = 0.25 # Rotation speed in radians per second
+var rotation_speed = 0.25 # Rotation speed in radians per second
 
 var elapsed_time = 0.0
 const tween_duration = 0.5
 
 const LETTER_CHILDREN_OFFSET = 1 # The first child is always the at this stage.
 var screen_center
+var timer
 
 func _ready():
 	self.z_index = 0
@@ -23,7 +24,7 @@ func _ready():
 	
 	# TODO: Move timer into it's own scene.
 	# Start the timer
-	var timer = Timer.new()
+	timer = Timer.new()
 	timer.connect("timeout", _on_timer_timeout)
 	timer.set_wait_time(timer_duration)
 	timer.set_one_shot(false) # Make the timer repeat
@@ -122,9 +123,23 @@ func _process(delta):
 	var angle_step = 2 * PI / num_letters
 	var viewport = get_viewport_rect()
 	var radius = (num_letters * spacing) / (2 * PI) + offset
-	if radius > min(viewport.size.x, viewport.size.y - 128) / 2:
+	var max_diameter = float(min(viewport.size.x, viewport.size.y)) - Tile.square_size
+	if radius > max_diameter / 2:
 		game_over()
 		return
+	
+	# Calculate the slowdown factor based on the diameter
+	var slowdown_factor = 1.0
+	var diameter = 2.0 * radius
+	if diameter > max_diameter * 0.60:
+		# Calculate the diameter ratio, clamped between 0.0 and 1.0
+		var diameter_ratio = clamp((diameter - (max_diameter * 0.60)) / (max_diameter * 0.35), 0.0, 1.0)
+	
+		# Apply a smooth slowdown curve
+		slowdown_factor = 1.0 - (diameter_ratio * 0.5)
+		print(slowdown_factor)
+	# Apply the slowdown factor to the timer
+	timer.set_wait_time(timer_duration / slowdown_factor)
 	
 	for i in range(num_letters):
 		var sprite = get_child(i + LETTER_CHILDREN_OFFSET)
