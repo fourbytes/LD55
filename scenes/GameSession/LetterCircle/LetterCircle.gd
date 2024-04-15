@@ -20,7 +20,8 @@ func _ready():
 	Store.tiles_changed.connect(_on_tiles_changed)
 	Store.selected_tiles_changed.connect(_on_tiles_changed)
 	Store.score_changed.connect(_on_score_change)
-	screen_center = get_viewport_rect().get_center() - Vector2(0, 64)
+	screen_center = get_viewport_rect().get_center() - Vector2(64, 64)
+
 	
 	# TODO: Move timer into it's own scene.
 	# Start the timer
