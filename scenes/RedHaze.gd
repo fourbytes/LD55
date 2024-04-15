@@ -11,6 +11,8 @@ func _ready():
 
 func _on_tiles_changed(tiles: Array[Tile]):
 	var opacity = minf((float(len(tiles)-MIN_TILES)/MAX_TILES)*MAX_OPACITY, MAX_OPACITY)
+	if opacity <= 0:
+		return
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_OUT)
@@ -18,7 +20,8 @@ func _on_tiles_changed(tiles: Array[Tile]):
 
 func _on_word_wrong():
 	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "color", Color(255, 0, 0, 0.1), 0.5)
-	tween.tween_property(self, "color", Color(255, 0, 0, 0), 0.5)
+	var prev_color = self.color
+	await tween.set_trans(Tween.TRANS_CUBIC)
+	await tween.set_ease(Tween.EASE_OUT)
+	await tween.tween_property(self, "color", Color(255, 0, 0, 0.15), 0.5)
+	await tween.tween_property(self, "color", prev_color, 0.5)

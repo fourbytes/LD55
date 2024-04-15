@@ -32,7 +32,10 @@ func _process(_delta):
 	for i in range(num_letters):
 		var sprite = get_child(i)
 		if sprite.get_rect().has_point(sprite.get_local_mouse_position()):
+			sprite.set_modulate(Color(1.5, 1.5, 1.5, 1))
 			if Input.is_action_just_pressed("select_letter"):
 				var tile = Store.selected_tiles[i]
 				if tile.isSelected:
 					Store.deselect_tile(tile)
+		else:
+			sprite.set_modulate(Color(1, 1, 1, 1))

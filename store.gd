@@ -49,12 +49,11 @@ func deselect_tile(tile: Tile):
 	selected_tiles_changed.emit(tiles)
 
 func deselect_all_tiles():
-	if len(selected_tiles) > 0:
-		word_reset.emit()
-		selected_tiles = []
-		for tile in tiles:
-			tile.isSelected = false
-		selected_tiles_changed.emit(tiles)
+	word_reset.emit()
+	selected_tiles = []
+	for tile in tiles:
+		tile.isSelected = false
+	selected_tiles_changed.emit(tiles)
 	
 func submit_word():
 	var word = ''
